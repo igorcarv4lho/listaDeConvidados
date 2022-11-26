@@ -9,24 +9,13 @@
 <body>
     <div id="app">
         <h1>Lista de Convidados</h1>
-        <ul>
-            <li>
-                Igor Carvalho
-                <a href="#">Excluir</a>
 
-                <li>
-                    Aline Roberta
-                    <a href="#">Excluir</a>
-                </li>
+        <ul id="lista">
 
-                <li>
-                    Rick Sanches
-                    <a href="#">Excluir</a>
-                </li>
-            </li>
+            
         </ul>
-        <input type="text" placeholder="Digite o nome do convidado"/>
-        <button>Cadastrar</button>
+        <input id="campo" type="text" placeholder="Digite o nome do convidado"/>
+        <button id="botao">Cadastrar</button>
 
 
     </div>
@@ -35,6 +24,42 @@
 
     <script  type="text/javascript" >
 
+        var elLista = document.getElementById("lista");
+        var elCampo = document.getElementById("campo");
+        var elBotao = document.getElementById("botao");
+
+        var convidados = [
+            {nome: "Igor Carvalho"},
+            { nome: "Aline Roberta"},
+            { nome: "Rick Sanches"},
+            { nome: "Luke Skywalker"}
+        ];
+        function listarConvidados(){
+            elLista.innerHTML = "";
+        
+            for (convidado of convidados) {
+            var elConvidado = document.createElement("li");
+            var elNome = document.createTextNode(convidado.nome);
+
+            elConvidado.appendChild(elNome);
+            elLista.appendChild(elConvidado);
+        }
+        }
+        
+        listarConvidados();
+
+        var adicionarConvidado = function(){
+            var nome = elCampo.value;
+            convidados.push ({nome: nome});
+            elCampo.value = "";
+
+            listarConvidados();
+        };
+
+        elBotao.onclick = adicionarConvidado;
+        
+    
+    
     </script>
     
 </body>
